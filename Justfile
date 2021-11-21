@@ -34,6 +34,36 @@ import dataset: dotenv initdb
     psql -f "$f"
   done
 
+# Generate/update the javascript client bindings based on the backend's openapi spec
+generate-client:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  #
+  # We will use [openapi-generator](https://openapi-generator.tech/) to
+  # generate the javascript client from the openapi spec that we download from
+  # the PostgREST backend.
+  #
+  function is_local_backend_running() {
+    docker-compose ps |tail -n +3 |awk -F'(  ) *' '{
+      if ($1 ~ /^{{NAME}}-backend$/ && $3 == "Up") {
+        exit 0
+      } else {
+        exit 1
+      }
+    }'
+  }
+
+  if ! is_local_backend_running; then
+    echo 'Please make sure the local PostgREST backend is running' 1>&2
+    echo 'You can start a local development environment with `docker-compose up`' 1>&2
+    exit 1
+  fi
+
+  # FIXME: This spec document contains a host path and schema ('http')
+  # that do not apply to production.
+  curl http://localhost:3000/ -o frontend/openapi.json
+  openapi-generator-cli generate -i frontend/openapi.json -g typescript-fetch -o frontend/generated
+
 # Generate default development .env file
 dotenv:
   #!/usr/bin/env bash
