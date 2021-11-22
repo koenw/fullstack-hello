@@ -6,6 +6,7 @@
     just
     postgresql
     openapi-generator-cli
+    nodejs-16_x
   ];
   multiPkgs = null;
   runScript = "zsh";

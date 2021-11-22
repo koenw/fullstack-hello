@@ -1,0 +1,21 @@
+{
+  "name": "fullstack-hello-frontend",
+  "version": "0.0.1",
+  "description": "Full stack hello world: the frontend. Aka baby's first React",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx eslint index.js"
+  },
+  "author": "Koen Wilde <koen@chillheid.nl>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-react": "^7.27.1",
+    "parcel": "^2.0.1",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
