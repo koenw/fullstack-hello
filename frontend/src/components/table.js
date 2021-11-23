@@ -12,9 +12,10 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
-
-function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHeaderClick, initialPageIndex, initialPageSize }) {
+function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHeaderClick }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -28,6 +29,7 @@ function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHead
     { columns,
       data,
       initialState: { pageIndex: 0, pageSize: 25 },
+      pageCount: -1,
       manualPagination: true,
       manualSortBy: true,
     },
@@ -41,8 +43,8 @@ function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHead
   }
 
   const handlePageChange = (event, newPage) => {
-    gotoPage(newPage);
     onChangePageIndex(newPage);
+    gotoPage(newPage);
   }
 
 	return (
@@ -55,10 +57,10 @@ function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHead
                 <TableCell {...column.getHeaderProps()} {...column.getSortByToggleProps()} onClick={() => onHeaderClick(column)}>
                   <span>{column.render('Header')}</span>
                   <span>
-                    {column.sortDirection === 'ASC' ? (
-                      <ArrowDropUp />
-                    ) : column.sortDirection === 'DESC' ? (
-                      <ArrowDropDown />
+                    {column.sortDirection === 'asc' ? (
+                      <ArrowDropUpIcon />
+                    ) : column.sortDirection === 'desc' ? (
+                      <ArrowDropDownIcon />
                     ) : null}
                   </span>
                 </TableCell>

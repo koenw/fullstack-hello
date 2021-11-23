@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@emotion/react': ^11.6.0
   '@emotion/styled': ^11.6.0
+  '@mui/icons-material': ^5.2.0
   '@mui/material': ^5.1.1
   babel-eslint: ^10.1.0
   eslint-plugin-react: ^7.27.1
@@ -15,6 +16,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.6.0_react@17.0.2
   '@emotion/styled': 11.6.0_09d7da8d8539a2c636890d93da0232a4
+  '@mui/icons-material': 5.2.0_@mui+material@5.1.1+react@17.0.2
   '@mui/material': 5.1.1_7780e7883c97f30a60852af20fcff67c
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -414,6 +416,22 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
+    dev: false
+
+  /@mui/icons-material/5.2.0_@mui+material@5.1.1+react@17.0.2:
+    resolution: {integrity: sha512-NvyrVaGKpP4R1yFw8BCnE0QcsQ67RtpgxPr4FtH8q60MDYPuPVczLOn5Ash5CFavoDWur/NfM/4DpT54yf3InA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.0.0
+      '@types/react': ^16.8.6 || ^17.0.0
+      react: ^17.0.2
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.16.3
+      '@mui/material': 5.1.1_7780e7883c97f30a60852af20fcff67c
+      react: 17.0.2
     dev: false
 
   /@mui/material/5.1.1_7780e7883c97f30a60852af20fcff67c:

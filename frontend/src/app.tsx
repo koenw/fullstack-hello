@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Configuration, Brewerie, BreweriesApi } from "./generated";
 import SuperTable from "./components/table";
 
+import { Box, Tab, TabPanel } from '@mui/material';
+
 const breweriesApi = new BreweriesApi();
 
 const App = () => {
@@ -26,22 +28,6 @@ const App = () => {
         break;
     }
   }
-
-  useEffect(() => {
-    var args = {'limit': pageSize, 'offset': pageIndex * pageSize};
-    if (order) {
-      args['order'] = order;
-    }
-    breweriesApi.breweriesGet(args)
-      .then(
-        (result) => {
-          setBreweries(result);
-        },
-        (error) => {
-          console.log("Failed to get breweries", error);
-        }
-      );
-  }, [pageSize, pageIndex, order]);
 
   // TODO: Generate these from the api models to make this entirely generic
   const columns = React.useMemo(
@@ -70,15 +56,35 @@ const App = () => {
     []
   );
 
-  if (breweries) {
-    return(
-      <SuperTable columns={columns} data={breweries} initialPageIndex={pageIndex} onChangePageIndex={setPageIndex} onChangePageSize={setPageSize} initialPageSize={pageSize} onHeaderClick={columnHeaderClick} />
-    );
-  } else {
-    return(
-      <SuperTable columns={columns} data={[]}/>
-    );
+  useEffect(() => {
+    var args = {'limit': pageSize, 'offset': pageIndex * pageSize};
+    if (order) {
+      args['order'] = order;
+    }
+    breweriesApi.breweriesGet(args)
+      .then(
+        (result) => {
+          setBreweries(result);
+        },
+        (error) => {
+          console.log("Failed to get breweries", error);
+        }
+      );
+  }, [pageSize, pageIndex, order]);
+
+  if (!breweries) {
+    setBreweries([]);
   }
+
+  return(
+    <SuperTable
+      columns={columns}
+      data={breweries}
+      onChangePageIndex={setPageIndex}
+      onChangePageSize={setPageSize}
+      onHeaderClick={columnHeaderClick}
+    />
+  );
 };
 
 export default App;
