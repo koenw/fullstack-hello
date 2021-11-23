@@ -6,22 +6,20 @@ const breweriesApi = new BreweriesApi();
 
 const App = () => {
   const [ breweries, setBreweries ] = useState<Brewerie[]>(null);
-  const [ offset, setOffset ] = useState<number>(0);
-  const [ limit, setLimit ] = useState<number>(25);
-  const [ BreweriesDirty, setBreweriesDirty ] = useState<Bool>(false);
+  const [ pageIndex, setPageIndex ] = useState<number>(0);
+  const [ pageSize, setPageSize ] = useState<number>(25);
 
   useEffect(() => {
-    breweriesApi.breweriesGet({'limit': limit, 'offset': offset})
+    breweriesApi.breweriesGet({'limit': pageSize, 'offset': pageIndex * pageSize})
       .then(
         (result) => {
           setBreweries(result);
-          setBreweriesDirty(false);
         },
         (error) => {
           console.log("Failed to get breweries", error);
         }
       );
-  }, []);
+  }, [pageSize, pageIndex]);
 
   // TODO: Generate these from the api models to make this entirely generic
   const columns = React.useMemo(
@@ -49,7 +47,7 @@ const App = () => {
 
   if (breweries) {
     return(
-      <SuperTable columns={columns} data={breweries} />
+      <SuperTable columns={columns} data={breweries} initialPageIndex={pageIndex} onChangePageIndex={setPageIndex} onChangePageSize={setPageSize} initialPageSize={pageSize}  />
     );
   } else {
     return(
