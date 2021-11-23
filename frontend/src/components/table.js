@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, useSortBy } from 'react-table';
 import ReactDom from 'react-dom';
 import Button from '@mui/material/Button';
 
@@ -14,7 +14,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, initialPageIndex, initialPageSize }) {
+function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHeaderClick, initialPageIndex, initialPageSize }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -29,9 +29,10 @@ function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, initia
       data,
       initialState: { pageIndex: 0, pageSize: 25 },
       manualPagination: true,
-      pageCount: -1,
+      manualSortBy: true,
     },
-    usePagination
+    useSortBy,
+    usePagination,
   );
 
   const handleRowsPerPageChange = event => {
@@ -51,7 +52,16 @@ function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, initia
           {headerGroups.map(headerGroup => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <TableCell {...column.getHeaderProps()}>{column.render('Header')}</TableCell>
+                <TableCell {...column.getHeaderProps()} {...column.getSortByToggleProps()} onClick={() => onHeaderClick(column)}>
+                  <span>{column.render('Header')}</span>
+                  <span>
+                    {column.sortDirection === 'ASC' ? (
+                      <ArrowDropUp />
+                    ) : column.sortDirection === 'DESC' ? (
+                      <ArrowDropDown />
+                    ) : null}
+                  </span>
+                </TableCell>
               ))}
             </TableRow>
           ))}

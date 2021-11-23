@@ -8,9 +8,31 @@ const App = () => {
   const [ breweries, setBreweries ] = useState<Brewerie[]>(null);
   const [ pageIndex, setPageIndex ] = useState<number>(0);
   const [ pageSize, setPageSize ] = useState<number>(25);
+  const [ order, setOrder] = useState(null);
+
+  const columnHeaderClick = async (column: any) => {
+    switch (column.sortDirection) {
+      case 'none':
+        setOrder(column.id + '.asc');
+        column.sortDirection = 'asc';
+        break;
+      case 'asc':
+        setOrder(column.id + '.desc');
+        column.sortDirection = 'desc';
+        break;
+      case 'desc':
+        setOrder(null);
+        column.sortDirection = 'none';
+        break;
+    }
+  }
 
   useEffect(() => {
-    breweriesApi.breweriesGet({'limit': pageSize, 'offset': pageIndex * pageSize})
+    var args = {'limit': pageSize, 'offset': pageIndex * pageSize};
+    if (order) {
+      args['order'] = order;
+    }
+    breweriesApi.breweriesGet(args)
       .then(
         (result) => {
           setBreweries(result);
@@ -19,7 +41,7 @@ const App = () => {
           console.log("Failed to get breweries", error);
         }
       );
-  }, [pageSize, pageIndex]);
+  }, [pageSize, pageIndex, order]);
 
   // TODO: Generate these from the api models to make this entirely generic
   const columns = React.useMemo(
@@ -30,14 +52,17 @@ const App = () => {
           {
             Header: 'Name',
             accessor: 'name',
+            sortDirection: 'none',
           },
           {
             Header: 'City',
             accessor: 'city',
+            sortDirection: 'none',
           },
           {
             Header: 'State',
             accessor: 'state',
+            sortDirection: 'none',
           },
         ]
       },
@@ -47,11 +72,11 @@ const App = () => {
 
   if (breweries) {
     return(
-      <SuperTable columns={columns} data={breweries} initialPageIndex={pageIndex} onChangePageIndex={setPageIndex} onChangePageSize={setPageSize} initialPageSize={pageSize}  />
+      <SuperTable columns={columns} data={breweries} initialPageIndex={pageIndex} onChangePageIndex={setPageIndex} onChangePageSize={setPageSize} initialPageSize={pageSize} onHeaderClick={columnHeaderClick} />
     );
   } else {
     return(
-      <SuperTable columns={columns} data={[]} />
+      <SuperTable columns={columns} data={[]}/>
     );
   }
 };
