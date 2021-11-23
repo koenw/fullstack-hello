@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Configuration, Brewerie, BreweriesApi } from "./generated";
-import Table from "./components/table";
+import SuperTable from "./components/table";
 
 const breweriesApi = new BreweriesApi();
 
@@ -49,11 +49,11 @@ const App = () => {
 
   if (breweries) {
     return(
-      <Table columns={columns} data={breweries} />
+      <SuperTable columns={columns} data={breweries} />
     );
   } else {
     return(
-      <Table columns={columns} data={[]} />
+      <SuperTable columns={columns} data={[]} />
     );
   }
 };

@@ -1,0 +1,20 @@
+/// <reference types="react" />
+declare type TargetType = React.RefObject<Element> | Element | null | undefined;
+interface Options {
+    disabled: boolean;
+    triggerTarget: TargetType;
+    overlayTarget: TargetType;
+    /**
+     * Whether close on Escape keyup.
+     * Defaults to true.
+     */
+    listenEscape?: boolean;
+}
+/**
+ * A hook that listens to the document click event and closes the overlay.
+ * @param onRootClose
+ * @param param1
+ * @todo Allow different behaviors based on whether clicked element is focusable
+ */
+declare function useRootClose(onRootClose: (e: Event) => void, { disabled, triggerTarget, overlayTarget, listenEscape }: Options): void;
+export default useRootClose;

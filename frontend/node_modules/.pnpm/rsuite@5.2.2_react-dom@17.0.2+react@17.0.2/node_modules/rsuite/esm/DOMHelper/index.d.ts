@@ -1,0 +1,48 @@
+import * as helpers from 'dom-lib';
+export * from 'dom-lib';
+declare const DOMHelper: {
+    isElement: (node: HTMLElement) => boolean;
+    on: typeof helpers.on;
+    off: typeof helpers.off;
+    WheelHandler: typeof helpers.WheelHandler;
+    DOMMouseMoveTracker: typeof helpers.DOMMouseMoveTracker;
+    addClass: (target: Element, className: string) => Element;
+    removeClass: (target: Element, className: string) => Element;
+    hasClass: (target: Element, className: string) => boolean;
+    toggleClass: (target: Element, className: string) => Element;
+    cancelAnimationFramePolyfill: typeof clearTimeout;
+    requestAnimationFramePolyfill: typeof requestAnimationFrame;
+    getAnimationEnd: typeof helpers.getAnimationEnd;
+    ownerDocument: (node: Element) => Document;
+    ownerWindow: (componentOrElement: Element) => Window;
+    getWindow: (node: any) => Window;
+    getContainer: (container: Element | (() => Element), defaultContainer?: Element) => Element;
+    canUseDOM: boolean;
+    contains: (context: Element, node: Node & ParentNode) => boolean;
+    scrollTop: (node: Element, val?: number) => number;
+    scrollLeft: (node: Element, val?: number) => number;
+    getOffset: (node: Element) => {
+        top: number;
+        left: number;
+        height: number;
+        width: number;
+    } | DOMRect;
+    nodeName: (node: Element) => string;
+    getOffsetParent: (node: Element) => Element;
+    getPosition: (node: Element, offsetParent?: Element, calcMargin?: boolean) => DOMRect | {
+        top: number;
+        left: number;
+        height: number;
+        width: number;
+    };
+    isOverflowing: (container: Element) => boolean;
+    getScrollbarSize: (recalc?: boolean) => number | void;
+    getHeight: (node: Element | Window, client?: Element) => number;
+    getWidth: (node: Element | Window, client?: Element) => number;
+    isFocusable: typeof helpers.isFocusable;
+    getStyle: (node: Element, property?: string) => string | CSSStyleDeclaration;
+    removeStyle: (node: Element, keys: string | string[]) => void;
+    addStyle: (node: Element, property: string | import("dom-lib/esm/addStyle").CSSProperty, value?: string | number) => void;
+    translateDOMPositionXY: (style: CSSStyleDeclaration, x?: number, y?: number) => CSSStyleDeclaration;
+};
+export default DOMHelper;
