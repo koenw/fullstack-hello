@@ -44,7 +44,7 @@ generate-client backend_url:
   # generate the javascript client from the openapi spec that we download from
   # the PostgREST backend.
   #
-  curl http://{{backend_url}}/ -o frontend/openapi.json
+  curl "{{backend_url}}" -o frontend/openapi.json
   openapi-generator-cli generate -i frontend/openapi.json -g typescript-fetch -o frontend/generated
 
 # Build the frontend docker image

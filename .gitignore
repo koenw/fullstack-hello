@@ -1,5 +1,4 @@
 frontend/openapi.json
-frontend/generated/
 frontend/.parcel-cache
 frontend/dist
 result
