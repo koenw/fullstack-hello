@@ -9,7 +9,7 @@ const breweriesApi = new BreweriesApi();
 const App = () => {
   const [ breweries, setBreweries ] = useState<Brewerie[]>(null);
   const [ pageIndex, setPageIndex ] = useState<number>(0);
-  const [ pageSize, setPageSize ] = useState<number>(25);
+  const [ pageSize, setPageSize ] = useState<number>(10);
   const [ order, setOrder] = useState(null);
 
   const columnHeaderClick = async (column: any) => {
