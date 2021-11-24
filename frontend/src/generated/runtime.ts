@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "http://0.0.0.0:3000".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.hello-parity.koenw.dev:443".replace(/\/+$/, "");
 
 const isBlob = (value: any) => typeof Blob !== 'undefined' && value instanceof Blob;
 
@@ -125,7 +125,7 @@ export const COLLECTION_FORMATS = {
     pipes: "|",
 };
 
-export type FetchAPI = WindowOrWorkerGlobalScope['fetch'];
+export type FetchAPI = GlobalFetch['fetch'];
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
