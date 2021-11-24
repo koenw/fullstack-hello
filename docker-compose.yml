@@ -14,3 +14,12 @@
         - "3000:3000"
       depends_on:
         - postgres
+    mgmt:
+      container_name: "${NAME}-mgmt"
+      # Unfortunately we cannot build this image directly from the compose file
+      # since docker-compose only supports building image with Dockerfiles and
+      # this image is build with nix.
+      image: "ghcr.io/koenw/${NAME}-mgmt:latest"
+      env_file: .env
+      depends_on:
+        - postgres

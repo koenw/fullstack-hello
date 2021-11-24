@@ -30,3 +30,10 @@ follow along.
 You can now visit http://localhost:3000/ for the openapi specification.
 
 ## Deployment
+
+### Database migrations in Production
+
+Because we use [PostgREST](https://github.com/PostgREST/postgrest) instead of a
+traditional (manual labour) backend (that would usually also perform the
+database migrations) we make use of a custom *mgmt* container that takes care
+of the database migrations (and does nothing else).
