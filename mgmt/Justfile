@@ -50,7 +50,12 @@ generate-client backend_url:
 # Build the frontend docker image
 build-frontend-image:
   cd frontend && npx parcel build src/index.html
-  cd frontend && docker build -t {{NAME}}-frontend:latest .
+  cd frontend && docker build -t koenw/{{NAME}}-frontend:latest .
+  docker tag koenw/{{NAME}}-frontend:latest ghcr.io/koenw/{{NAME}}-frontend:latest
+
+# Push the latest frontend image to the registry
+push-frontend-image:
+  docker push ghcr.io/koenw/{{NAME}}-frontend:latest
 
 # Build the management docker image (to take care of db migrations)
 build-mgmt-image:
@@ -59,7 +64,7 @@ build-mgmt-image:
   docker load < result
   docker tag koenw/{{NAME}}-mgmt:latest ghcr.io/koenw/{{NAME}}-mgmt:latest
 
-# Push the latest fullstack-hello-mgmt image to the registry
+# Push the latest mgmt image to the registry
 push-mgmt-image:
   docker push ghcr.io/koenw/{{NAME}}-mgmt:latest
 
