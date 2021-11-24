@@ -15,7 +15,7 @@ import Paper from '@mui/material/Paper';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
-function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHeaderClick }) {
+function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChangePageSize, onHeaderClick }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -28,7 +28,7 @@ function SuperTable({ columns, data, onChangePageIndex, onChangePageSize, onHead
   } = useTable(
     { columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 25 },
+      initialState: { pageIndex: 0, pageSize: initialPageSize },
       pageCount: -1,
       manualPagination: true,
       manualSortBy: true,

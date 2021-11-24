@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Configuration, Brewerie, BreweriesApi } from "./generated";
 import SuperTable from "./components/table";
+import SuperTabs from "./components/tabs.tsx";
 
 import { Box, Tab, TabPanel } from '@mui/material';
 
@@ -31,10 +32,7 @@ const App = () => {
 
   // TODO: Generate these from the api models to make this entirely generic
   const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Breweries',
-        columns: [
+    () =>[
           {
             Header: 'Name',
             accessor: 'name',
@@ -50,10 +48,7 @@ const App = () => {
             accessor: 'state',
             sortDirection: 'none',
           },
-        ]
-      },
-    ],
-    []
+        ],
   );
 
   useEffect(() => {
@@ -77,13 +72,16 @@ const App = () => {
   }
 
   return(
+  <SuperTabs labels={["Breweries"]}>
     <SuperTable
       columns={columns}
       data={breweries}
+      initialPageSize={pageSize}
       onChangePageIndex={setPageIndex}
       onChangePageSize={setPageSize}
       onHeaderClick={columnHeaderClick}
     />
+  </SuperTabs>
   );
 };
 
