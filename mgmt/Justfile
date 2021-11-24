@@ -52,11 +52,11 @@ build-mgmt-image:
   #!/bin/sh
   nix-build mgmt/default.nix
   docker load < result
-  docker tag koenw/fullstack-hello-mgmt:latest ghcr.io/koenw/fullstack-hello-mgmt:latest
+  docker tag koenw/{{NAME}}-mgmt:latest ghcr.io/koenw/{{NAME}}-mgmt:latest
 
 # Push the latest fullstack-hello-mgmt image to the registry
 push-mgmt-image:
-  docker push ghcr.io/koenw/fullstack-hello-mgmt:latest
+  docker push ghcr.io/koenw/{{NAME}}-mgmt:latest
 
 # Generate default development .env file
 dotenv:
