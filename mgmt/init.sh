@@ -4,6 +4,7 @@
 mkdir /tmp
 
 # Move the dataset(s) to where they can be found
+mkdir -p datasets
 mv craft_beers datasets/
 
 just initdb
