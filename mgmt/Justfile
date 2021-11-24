@@ -1,5 +1,6 @@
 NAME := "fullstack-hello"
 
+set dotenv-load := true
 set export
 
 # Open a psql shell into the development database
