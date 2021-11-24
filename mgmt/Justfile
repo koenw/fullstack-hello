@@ -1,9 +1,6 @@
 NAME := "fullstack-hello"
 
-DOCKER_IMAGE_PREFIX := "koenw/" + "{{NAME}}"
-DOCKER_TAG := `git describe --tags 2>/dev/null || echo latest`
-DOCKERFILES := "deploy/backend/Dockerfile"
-
+set dotenv-load := true
 set export
 
 # Open a psql shell into the development database
@@ -17,10 +14,11 @@ initdb:
   export PGHOST="$DB_HOST"
   export PGUSER="$DB_USER"
   export PGPORT=$DB_PORT""
+  export PGDATABASE="$DB_NAME"
 
   # This role will be used by postgrest to execute the queries
-  psql -c "create role anon nologin" > /dev/null 2>&1
-  psql -c "grant anon to \"$DB_USER\"" > /dev/null 2>&1
+  psql -c "create role anon nologin"
+  psql -c "grant anon to \"$DB_USER\""
 
 # Import the given dataset
 import dataset: initdb
@@ -28,7 +26,8 @@ import dataset: initdb
   export PGPASSWORD="$DB_PASSWORD"
   export PGHOST="$DB_HOST"
   export PGUSER="$DB_USER"
-  export PGPORT=$DB_PORT""
+  export PGPORT="$DB_PORT"
+  export PGDATABASE="$DB_NAME"
 
   for f in datasets/{{ dataset }}/*.sql; do
     psql -f "$f"

@@ -12,6 +12,7 @@ in
       openapi-generator-cli
       nodejs-16_x
       ../mgmt
+      ../datasets
     ];
 
     config = {

@@ -2,7 +2,6 @@
   "name": "fullstack-hello-frontend",
   "version": "0.0.1",
   "description": "Full stack hello world: the frontend. Aka baby's first React",
-  "main": "index.js",
   "scripts": {
     "test": "npx eslint index.js"
   },
