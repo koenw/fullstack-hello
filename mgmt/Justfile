@@ -19,8 +19,8 @@ initdb:
   export PGPORT=$DB_PORT""
 
   # This role will be used by postgrest to execute the queries
-  psql -c "create role anon nologin" > /dev/null 2>&1
-  psql -c "grant anon to \"$DB_USER\"" > /dev/null 2>&1
+  psql -c "create role anon nologin"
+  psql -c "grant anon to \"$DB_USER\""
 
 # Import the given dataset
 import dataset: initdb
