@@ -6,8 +6,8 @@ dataset](https://github.com/nickhould/craft-beers-dataset).
 ## Overview
 
 Data is stored in PostgreSQL, served as a RESTful API by
-[PostgREST](https://github.com/PostgREST/postgrest) that will be consumed by a
-javascript frontend.
+[PostgREST](https://github.com/PostgREST/postgrest) that is consumed by a
+javascript/react frontend.
 
 ## Getting Started
 

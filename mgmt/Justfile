@@ -47,6 +47,11 @@ generate-client backend_url:
   curl http://{{backend_url}}/ -o frontend/openapi.json
   openapi-generator-cli generate -i frontend/openapi.json -g typescript-fetch -o frontend/generated
 
+# Build the frontend docker image
+build-frontend-image:
+  cd frontend && npx parcel build src/index.html
+  cd frontend && docker build -t {{NAME}}-frontend:latest .
+
 # Build the management docker image (to take care of db migrations)
 build-mgmt-image:
   #!/bin/sh

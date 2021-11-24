@@ -14,6 +14,13 @@
         - "3000:3000"
       depends_on:
         - postgres
+    frontend:
+      container_name: "${NAME}-frontend"
+      build: frontend
+      ports:
+        - "8080:80"
+      links:
+        - backend
     mgmt:
       container_name: "${NAME}-mgmt"
       # Unfortunately we cannot build this image directly from the compose file
