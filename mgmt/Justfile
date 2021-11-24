@@ -1,9 +1,5 @@
 NAME := "fullstack-hello"
 
-DOCKER_IMAGE_PREFIX := "koenw/" + "{{NAME}}"
-DOCKER_TAG := `git describe --tags 2>/dev/null || echo latest`
-DOCKERFILES := "deploy/backend/Dockerfile"
-
 set export
 
 # Open a psql shell into the development database
