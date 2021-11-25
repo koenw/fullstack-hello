@@ -19,5 +19,6 @@ CREATE TABLE IF NOT EXISTS beers (
 );
 GRANT SELECT ON beers TO anon;
 
+-- TODO: Make idempotent
 \COPY breweries(serial, name, city, state, id) FROM 'datasets/craft_beers/breweries.csv' DELIMITER ',' CSV HEADER;
 \COPY beers(serial, abv, ibu, id, name, style, brewery_id, ounces) FROM 'datasets/craft_beers/beers.csv' DELIMITER ',' CSV HEADER;
