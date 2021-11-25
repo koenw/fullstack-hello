@@ -5,6 +5,8 @@
   targetPkgs = pkgs: with pkgs; [
     just
     postgresql
+    docker-compose
+    docker
     openapi-generator-cli
     nodejs-16_x
   ];
