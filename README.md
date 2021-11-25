@@ -14,8 +14,9 @@ Live API docs [available here](https://api.hello-parity.koenw.dev/swagger/).
 ## Getting started
 
 Run the whole stack locally in docker with `docker-compose up`, this makes the
-backend available at [http://localhost:3000](http://localhost:3000) and the
-frontend at [http://localhost:8080](http://localhost:8080).
+frontend available at [http://localhost:8080](http://localhost:8080), the
+backend at [http://localhost:3000](http://localhost:3000) and the swagger API
+docs at [http://localhost:8088](http://localhost:8088).
 
 ## Development
 
