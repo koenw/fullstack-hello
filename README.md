@@ -55,16 +55,15 @@ tables out of an API.  Most of the frontend's API consuming code (in
 Run `npx pnpm run serve` from the `frontend` directory to start a local
 auto-refreshing development server.
 
-#### Generating or updating the API client
-
-Run `just generate-client <backend url>` to generate or update the API client.
-
 ### Adding/Removing columns
 
 Since our backend is entirely data agnostic and most of the client is
 automatically generated, adding or removing columns is as simple as editing the
-column definition in `frontend/src/app.tsx`. If the column does not yet exists
-in the database you will also have to add it to the migrations.
+column definition in `frontend/src/app.tsx`.
+
+If the columns do not yet exists in the database you will have to add them to a
+migration and re-generate the client API code as described in [Adding
+additional datasets](#adding-additional-datasets).
 
 ### Migrations
 
@@ -88,6 +87,61 @@ adapted to additional datasets:
 * Generate the frontend API client (`just generate-client
   http://localhost:3000/`)
 * Add the API imports and column definitions to `frontend/src/app.tsx`
+
+## Deployment
+
+You'll need Docker🐋 and a PostgreSQL🐘 database. Pre-build Docker images are
+available, the `docker-compose.yml` file can serve as an example of how they
+tie together. If you are aiming to run on kubernetes I suggest running the
+*mgmt* container in the same pod as the
+[PostgREST](https://postgrest.org/en/v8.0/) backend.
+
+### Backend
+
+`docker pull postgrest/postgrest`
+
+#### Configuration
+
+|Environmental Variable| Description | Example |
+|---|---|---|
+|`PGRST_DB_URI`       |[Standard URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) to the database. | `postgres://user:password@host:5432/dbname`|
+|`PGRST_DB_SCHEMA`    |PostgreSQL schema to connect to. |`public` |
+|`PGRST_DB_ANON_ROLE` |PostgreSQL user used for anonymous queries. Make sure you update the migrations (that also create this user) if you change this. |`anon`|
+
+### Frontend
+
+`docker pull ghcr.io/koenw/fullstack-hello-frontend`
+
+#### Configuration
+
+No configuration needed. If the frontend is access through localhost it will
+connect to `localhost:3000`, else it will connect to `https://api.<frontend
+domain>`.
+
+### Mgmt
+
+`docker pull ghcr.io/koenw/fullstack-hello-mgmt`
+
+#### Configuration
+
+|Environmental Variable| Description | Example |
+|---|---|---|
+|`DB_HOST`      |PostgreSQL database hostname | `shd-postgres`|
+|`DB_PORT`      |PostgreSQL database port |`5432` |
+|`DB_USER`      |PostgreSQL database user |`fullstack-hello` |
+|`DB_PASSWORD`  |PostgreSQL database password |`s3cr#t` |
+
+### SwaggerUI
+
+`docker pull swaggerapi/swagger-ui`
+
+#### Configuration
+
+|Environmental Variable| Description | Example |
+|---|---|---|
+|`URL`          |URL to the OpenAPI spec      | `https://api.hello-parity.koenw.dev/`|
+|`BASE_URL`     |Path to serve API docs under |`/swagger` |
+
 
 ## License
 
