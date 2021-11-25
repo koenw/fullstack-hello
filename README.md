@@ -133,6 +133,9 @@ domain>`.
 
 ### SwaggerUI
 
+This component provides the live API documentation and is thus optional from a
+user-functionality perspective.
+
 `docker pull swaggerapi/swagger-ui`
 
 #### Configuration
