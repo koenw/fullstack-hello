@@ -1,5 +1,6 @@
 # Fullstack-hello
 
+[![License](https://img.shields.io/github/license/koenw/fullstack-hello)]
 [![build](https://github.com/koenw/fullstack-hello/actions/workflows/build.yml/badge.svg)](https://github.com/koenw/fullstack-hello/actions/workflows/build.yml)
 
 Fullstack "hello, world!" using PostgreSQL🐘, a RESTful API powered by
@@ -65,3 +66,8 @@ Because our backend does not do migrations they (and the initial import) are
 instead handled by a separate very simple *mgmt* container. Place your
 migrations in `datasets/<dataset>/init.sql`, making sure to keep everything
 idempotent.
+
+## License
+
+You're free to use, modify and distribute this software under the terms of the
+MIT or Apache-2.0 license, whichever has your preference.
