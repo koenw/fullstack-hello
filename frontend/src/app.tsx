@@ -118,8 +118,9 @@ const App = () => {
     labels={apis.map((api) => api.name)}
     >
 
-    {apis.map((api) => (
+    {apis.map((api, i) => (
       <SuperTable
+        key={`table-${i}`}
         columns={api.columns}
         data={api.data}
         initialPageSize={pageSize}
