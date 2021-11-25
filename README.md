@@ -8,13 +8,31 @@ React. Also starring the [craft beers
 dataset](https://github.com/nickhould/craft-beers-dataset).
 
 Available for your viewing pleasure at [hello-parity.koenw.dev](https://hello-parity.koenw.dev).
-API docs available [here](https://api.hello-parity.koenw.dev/swagger/).
+Live API docs [available here](https://api.hello-parity.koenw.dev/swagger/).
 
-## Running locally
+## Getting started
 
 Run the whole stack locally in docker with `docker-compose up`. This makes the
 backend available at [http://localhost:3000](http://localhost:3000) and the
 frontend at [http://localhost:8080](http://localhost:8080).
+
+### Prerequisites
+
+The list of development dependencies is quite manageable:
+
+* [just](https://github.com/casey/just) as a command runner for project
+  specific commands. Also used by CI/CD
+* nodejs for npx
+* openapi-generator to generate or update the API client from the spec
+* docker-compose to run everything locally
+* docker to build, tag and push images
+
+Project specific commands, including CI/CD commands like building of docker
+images, are kept in the `Justfile`. [Nix](https://nixos.org/) users can use the
+`./just` wrapper (or `nix-shell`) and don't have to worry about
+dependencies.
+
+Run `just -l` to get an overview of available commands/tasks.
 
 ## Development
 
@@ -47,23 +65,3 @@ Because our backend does not do migrations they (and the initial import) are
 instead handled by a separate very simple *mgmt* container. Place your
 migrations in `datasets/<dataset>/init.sql`, making sure to keep everything
 idempotent.
-
-### Development environment
-
-This project uses the [just](https://github.com/casey/just) command runner to
-run project specific commands. See the excellent upstream docs on how to
-install *just*. [Nix](https://nixos.org/) users can use the `./just` wrapper
-and don't have to worry about dependencies.
-
-Run `just -l` to get an overview of available commands/tasks.
-
-#### Dependencies
-
-Nix users can use `nix-shell` to get a development shell with all dependencies
-available. Having said that, the list of development dependencies is quite manageable:
-
-* [just](https://github.com/casey/just) as a command runner
-* nodejs for npx
-* openapi-generator if you need to generate or update the api client
-* docker-compose to run everything locally
-* docker to build, tag and push images
