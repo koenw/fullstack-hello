@@ -80,7 +80,7 @@ dotenv:
   cat <<EOF > "${dotenv_path}"
     # psql (scripts)
     NAME={{NAME}}
-    DB_HOST=localhost
+    DB_HOST=postgres
     DB_PORT=5432
     DB_NAME={{NAME}}
     DB_USER={{NAME}}
@@ -96,4 +96,7 @@ dotenv:
     PGRST_DB_URI=postgres://{{NAME}}:{{NAME}}@postgres/{{NAME}}
     PGRST_DB_SCHEMA=public
     PGRST_DB_ANON_ROLE=anon
+
+    # frontend
+    API_BASEPAT=http://backend:3000/
   EOF

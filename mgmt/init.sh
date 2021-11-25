@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+DB_HOST="${DB_HOST:-localhost}"
+DB_PORT="${DB_PORT:-5432}"
+
 function wait_for_db() {
   echo -n "Waiting for postgres to become available..."
-  while ! nc -z "$PGHOST" "${PGPORT:5432}"; do
+  while ! nc -z "$DB_HOST" "$DB_PORT"; do
     echo -n "."
     sleep 1
   done

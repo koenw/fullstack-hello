@@ -11,6 +11,7 @@ in
       postgresql
       openapi-generator-cli
       nodejs-16_x
+      netcat
       ../mgmt
       ../datasets
     ];
