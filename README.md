@@ -52,8 +52,8 @@ tables out of an API.  Most of the frontend's API consuming code (in
 `frontend/src/generated`) is generated with
 [openapi-generator](https://openapi-generator.tech).
 
-Run `npx pnpm run serve` from the `frontend` directory to start a local
-auto-refreshing development server.
+Use `just serve` to start a local auto-refreshing development server (that
+talks to the production API).
 
 ### Adding/Removing columns
 

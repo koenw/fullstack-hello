@@ -47,6 +47,10 @@ generate-client backend_url:
   rm -rf frontend/src/generated
   openapi-generator-cli generate -i frontend/openapi.json -g typescript-fetch -o frontend/src/generated
 
+# Start a local auto-reloading development server on port 1234
+serve:
+  cd frontend && npx parcel src/index.html
+
 # Build the frontend docker image
 build-frontend-image:
   cd frontend && npx parcel build src/index.html
