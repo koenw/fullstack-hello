@@ -114,9 +114,9 @@ tie together. If you are aiming to run on kubernetes I suggest running the
 
 #### Configuration
 
-No configuration needed. If the frontend is access through localhost it will
-connect to `localhost:3000`, else it will connect to `https://api.<frontend
-domain>`.
+|Environmental Variable| Description | Example |
+|---|---|---|
+|`API_BASEPATH` |The API URL | `https://api.hello-parity.koenw.dev`|
 
 ### Mgmt
 

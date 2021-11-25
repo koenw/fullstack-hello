@@ -5,8 +5,12 @@ import SuperTabs from "./components/tabs.tsx";
 
 import { Box, Tab, TabPanel } from '@mui/material';
 
-const breweriesApi = new BreweriesApi();
-const beersApi = new BeersApi();
+const basePath = process.env.API_BASEPATH || 'https://api.hello-parity.koenw.dev';
+
+const configuration = new Configuration({basePath: basePath});
+
+const breweriesApi = new BreweriesApi(configuration);
+const beersApi = new BeersApi(configuration);
 
 const App = () => {
   const [ breweries, setBreweries ] = useState<Brewerie[]>([]);
