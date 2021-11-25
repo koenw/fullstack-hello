@@ -16,25 +16,6 @@ Run the whole stack locally in docker with `docker-compose up`, this makes the
 backend available at [http://localhost:3000](http://localhost:3000) and the
 frontend at [http://localhost:8080](http://localhost:8080).
 
-### Prerequisites
-
-The list of development dependencies is quite manageable:
-
-* [just](https://github.com/casey/just) as a command runner for project
-  specific commands. Also used by the CI/CD pipeline;
-* nodejs for npx/bootstrapping of [pnpm](https://pnpm.io/);
-* [openapi-generator](https://openapi-generator.tech/) to generate or update
-  the API client from the spec;
-* docker to build, tag and push images;
-* docker-compose to run everything locally;
-
-Project specific commands, including CI/CD commands like building of docker
-images, are kept in the `Justfile`. [Nix](https://nixos.org/) users can use the
-`./just` wrapper (or `nix-shell`) and don't have to worry about
-dependencies.
-
-Run `just -l` to get an overview of available commands/tasks.
-
 ## Development
 
 Using [PostgREST](https://github.com/PostgREST/postgrest) as a backend comes
@@ -43,6 +24,23 @@ with some perks. Besides the beautiful RESTful API that comes with it the
 important benefits, like [automatically generated
 clients](https://openapi-generator.tech/) and [API
 documentation](https://api.hello-parity.koenw.dev/swagger/).
+
+### Prerequisites
+
+* [just](https://github.com/casey/just) is used as a command runner for project
+  specific commands, both locally and in CI/CD;
+* nodejs for npx/bootstrapping of [pnpm](https://pnpm.io/);
+* [openapi-generator](https://openapi-generator.tech/) to generate or update
+  the API client from the spec;
+* docker to build, tag and push images;
+* docker-compose to run everything locally;
+
+Project specific commands, including CI/CD commands like building of docker
+images, are kept in the `Justfile`.  Run `just -l` to get an overview of
+available commands/tasks.
+
+[Nix](https://nixos.org/) users can use the `./just` wrapper or `nix-shell` and
+not worry about dependencies.
 
 ### Frontend
 
