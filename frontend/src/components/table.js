@@ -1,7 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { useTable, usePagination, useSortBy } from 'react-table';
-import ReactDom from 'react-dom';
-import Button from '@mui/material/Button';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,6 +14,15 @@ import Paper from '@mui/material/Paper';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
+SuperTable.propTypes = {
+  columns:            PropTypes.array,
+  data:               PropTypes.array,
+  initialPageSize:    PropTypes.number,
+  onChangePageIndex:  PropTypes.func,
+  onChangePageSize:   PropTypes.func,
+  onHeaderClick:      PropTypes.func,
+};
+
 function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChangePageSize, onHeaderClick }) {
   const {
     getTableProps,
@@ -24,7 +32,7 @@ function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChang
     page,
     gotoPage,
     setPageSize,
-    state: { pageIndex, pageSize, selectedRowIds },
+    state: { pageIndex, pageSize },
   } = useTable(
     { columns,
       data,
@@ -34,27 +42,27 @@ function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChang
       manualSortBy: true,
     },
     useSortBy,
-    usePagination,
+    usePagination
   );
 
   const handleRowsPerPageChange = event => {
     onChangePageSize(Number(event.target.value));
-    setPageSize(Number(event.target.value))
-  }
+    setPageSize(Number(event.target.value));
+  };
 
   const handlePageChange = (event, newPage) => {
     onChangePageIndex(newPage);
     gotoPage(newPage);
-  }
+  };
 
 	return (
     <TableContainer component={Paper}>
       <Table {...getTableProps()}>
         <TableHead>
           {headerGroups.map(headerGroup => (
-            <TableRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <TableCell {...column.getHeaderProps()} {...column.getSortByToggleProps()} onClick={() => onHeaderClick(column)}>
+            <TableRow key="table-header" {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, i) => (
+                <TableCell key={`column-${i}`} {...column.getHeaderProps()} {...column.getSortByToggleProps()} onClick={() => onHeaderClick(column)}>
                   <span>{column.render('Header')}</span>
                   <span>
                     {column.sortDirection === 'asc' ? (
@@ -70,11 +78,11 @@ function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChang
         </TableHead>
 
         <TableBody {...getTableBodyProps()}>
-          {page.map((row) => (
+          {page.map((row, i) => (
             prepareRow(row),
-            <TableRow key={row.cells.id} {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return <TableCell {...cell.getCellProps()}>{cell.render('Cell')}</TableCell>
+            <TableRow key={`row-${i}`} {...row.getRowProps()}>
+              {row.cells.map((cell, j) => {
+                return <TableCell key={`cell-${i}-${j}`} {...cell.getCellProps()}>{cell.render('Cell')}</TableCell>;
               })}
             </TableRow>
           ))}
@@ -92,7 +100,7 @@ function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChang
         </TableFooter>
       </Table>
     </TableContainer>
-	)
+	);
 }
 
 export default SuperTable;
