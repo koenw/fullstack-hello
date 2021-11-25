@@ -3,12 +3,15 @@
   "version": "0.0.1",
   "description": "Full stack hello world: the frontend. Aka baby's first React",
   "scripts": {
-    "test": "npx eslint index.js"
+    "test": "npx eslint src/",
+    "serve": "npx parcel src/index.html",
+    "build": "npx parcel build src/index.html"
   },
   "author": "Koen Wilde <koen@chillheid.nl>",
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "eslint": "^8.3.0",
     "eslint-plugin-react": "^7.27.1",
     "parcel": "^2.0.1",
     "prettier": "^2.4.1"
