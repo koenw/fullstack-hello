@@ -53,8 +53,9 @@ tables out of an API.  Most of the frontend's API consuming code (in
 `frontend/src/generated`) is generated with
 [openapi-generator](https://openapi-generator.tech).
 
-Use `just serve` to start a local auto-refreshing development server (that
-talks to the production API).
+Use `just serve` to start a local auto-refreshing development server on
+[http://localhost:1234](http://localhost:1234) that by default will talk to the
+backend started with `docker-compose up`.
 
 ### Adding/Removing columns
 
@@ -115,9 +116,9 @@ tie together. If you are aiming to run on kubernetes I suggest running the
 
 #### Configuration
 
-|Environmental Variable| Description | Example |
-|---|---|---|
-|`API_BASEPATH` |The API URL | `https://api.hello-parity.koenw.dev`|
+No configuration needed. If the frontend is access through localhost it will
+connect to `localhost:3000`, else it will connect to `https://api.<frontend
+domain>`.
 
 ### Mgmt
 
