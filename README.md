@@ -3,7 +3,7 @@
 [![build](https://github.com/koenw/fullstack-hello/actions/workflows/build.yml/badge.svg)](https://github.com/koenw/fullstack-hello/actions/workflows/build.yml)
 
 Fullstack "hello, world!" using PostgreSQL🐘, a RESTful API powered by
-[PostgREST](https://github.com/PostgREST/postgrest) and a frontend build with
+[PostgREST](https://postgrest.org/en/v8.0/) and a frontend build with
 React. Also starring the [craft beers
 dataset](https://github.com/nickhould/craft-beers-dataset).
 
