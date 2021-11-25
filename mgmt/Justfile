@@ -51,6 +51,10 @@ generate-client backend_url:
 serve:
   cd frontend && npx parcel src/index.html
 
+# Run frontend lints & tests
+test:
+  cd frontend && npx pnpm test
+
 # Build the frontend docker image
 build-frontend-image:
   cd frontend && npx parcel build src/index.html
