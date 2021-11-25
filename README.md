@@ -12,7 +12,7 @@ Live API docs [available here](https://api.hello-parity.koenw.dev/swagger/).
 
 ## Getting started
 
-Run the whole stack locally in docker with `docker-compose up`. This makes the
+Run the whole stack locally in docker with `docker-compose up`, this makes the
 backend available at [http://localhost:3000](http://localhost:3000) and the
 frontend at [http://localhost:8080](http://localhost:8080).
 
@@ -21,11 +21,12 @@ frontend at [http://localhost:8080](http://localhost:8080).
 The list of development dependencies is quite manageable:
 
 * [just](https://github.com/casey/just) as a command runner for project
-  specific commands. Also used by CI/CD
-* nodejs for npx
-* openapi-generator to generate or update the API client from the spec
-* docker-compose to run everything locally
-* docker to build, tag and push images
+  specific commands. Also used by the CI/CD pipeline;
+* nodejs for npx/bootstrapping of [pnpm](https://pnpm.io/);
+* [openapi-generator](https://openapi-generator.tech/) to generate or update
+  the API client from the spec;
+* docker to build, tag and push images;
+* docker-compose to run everything locally;
 
 Project specific commands, including CI/CD commands like building of docker
 images, are kept in the `Justfile`. [Nix](https://nixos.org/) users can use the
