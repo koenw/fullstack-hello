@@ -32,23 +32,21 @@ TabPanel.propTypes = {
 };
 
 export default function SuperTabs(props) {
-  const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    props.onChangeTab(newValue);
   };
 
   return (
     <Box>
       <Box>
-        <Tabs value={value} onChange={handleChange} aria-label="Tab Navigation">
+        <Tabs value={props.activeTab} onChange={handleChange} aria-label="Tab Navigation">
         {props.labels.map((label, i) => (
           <Tab label={label} key={`tab-${i}`} aria-controls={`tabpanel-${i}`} />
         ))}
         </Tabs>
       </Box>
       {React.Children.map(props.children, (component, i) => (
-        <TabPanel value={value} index={i}>
+        <TabPanel value={props.activeTab} index={i}>
           {component}
         </TabPanel>
       ))}

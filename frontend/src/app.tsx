@@ -14,6 +14,7 @@ const App = () => {
   const [ pageIndex, setPageIndex ] = useState<number>(0);
   const [ pageSize, setPageSize ] = useState<number>(10);
   const [ order, setOrder] = useState(null);
+  const [ activeTab, setActiveTab ] = useState<number>(0);
 
   const columnHeaderClick = async (column: any) => {
     switch (column.sortDirection) {
@@ -99,22 +100,22 @@ const App = () => {
       args['order'] = order;
     }
 
-    apis.forEach((api) => {
-      api.getMethod(args)
+    apis[activeTab].getMethod(args)
       .then(
         (result) => {
-          api.setMethod(result);
+          apis[activeTab].setMethod(result);
         },
         (error) => {
-          console.log(`Failed to get ${api.name}`, error);
+          console.log(`Failed to get ${apis[activeTab].name}`, error);
         },
-      )
-    });
+      );
 
-  }, [pageSize, pageIndex, order]);
+  }, [pageSize, pageIndex, order, activeTab]);
 
   return(
   <SuperTabs
+    activeTab={activeTab}
+    onChangeTab={setActiveTab}
     labels={apis.map((api) => api.name)}
     >
 
