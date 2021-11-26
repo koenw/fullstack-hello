@@ -90,6 +90,13 @@ adapted to additional datasets:
   http://localhost:3000/`)
 * Add the API imports and column definitions to `frontend/src/app.tsx`
 
+### Possible next steps
+
+* Make UI aware of foreign key relations;
+* Generate remaining dataset-specific UI code, leaving only configuration to
+  determine the columns.
+* Add search and/or filter functionality
+
 ## Deployment
 
 You'll need Docker🐋 and a PostgreSQL🐘 database. Pre-build Docker images are
