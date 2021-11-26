@@ -23,7 +23,7 @@ SuperTable.propTypes = {
   onHeaderClick:      PropTypes.func,
 };
 
-function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChangePageSize, onHeaderClick }) {
+function SuperTable({ columns, data, order, ordered, initialPageSize, onChangePageIndex, onChangePageSize, onHeaderClick }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -36,6 +36,8 @@ function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChang
   } = useTable(
     { columns,
       data,
+      order,
+      ordered,
       initialState: { pageIndex: 0, pageSize: initialPageSize },
       pageCount: -1,
       manualPagination: true,
@@ -65,9 +67,9 @@ function SuperTable({ columns, data, initialPageSize, onChangePageIndex, onChang
                 <TableCell key={`column-${i}`} {...column.getHeaderProps()} {...column.getSortByToggleProps()} onClick={() => onHeaderClick(column)}>
                   <span>{column.render('Header')}</span>
                   <span>
-                    {column.sortDirection === 'asc' ? (
+                    {ordered === column.id && order === 'asc' ? (
                       <ArrowDropUpIcon />
-                    ) : column.sortDirection === 'desc' ? (
+                    ) : ordered === column.id && order === 'desc' ? (
                       <ArrowDropDownIcon />
                     ) : null}
                   </span>

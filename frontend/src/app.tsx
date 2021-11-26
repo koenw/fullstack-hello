@@ -17,22 +17,28 @@ const App = () => {
   const [ beers, setBeers ] = useState<Beer[]>([]);
   const [ pageIndex, setPageIndex ] = useState<number>(0);
   const [ pageSize, setPageSize ] = useState<number>(10);
-  const [ order, setOrder] = useState(null);
+  const [ order, setOrder] = useState(null); // asc, desc, none, null
+  const [ ordered, setOrdered ] = useState<number>(0); // column the sort applies to
   const [ activeTab, setActiveTab ] = useState<number>(0);
 
-  const columnHeaderClick = async (column: any) => {
-    switch (column.sortDirection) {
-      case 'none':
-        setOrder(column.id + '.asc');
-        column.sortDirection = 'asc';
+  const columnHeaderClick = (column: any) => {
+    if (ordered != column.id) {
+      setOrdered(column.id);
+      if (order != null) {
+        setOrder(null);
+        return;
+      }
+    };
+
+    switch (order) {
+      case null:
+        setOrder('asc');
         break;
       case 'asc':
-        setOrder(column.id + '.desc');
-        column.sortDirection = 'desc';
+        setOrder('desc');
         break;
       case 'desc':
         setOrder(null);
-        column.sortDirection = 'none';
         break;
     }
   }
@@ -50,17 +56,14 @@ const App = () => {
               {
                 Header: 'Name',
                 accessor: 'name',
-                sortDirection: 'none',
               },
               {
                 Header: 'City',
                 accessor: 'city',
-                sortDirection: 'none',
               },
               {
                 Header: 'State',
                 accessor: 'state',
-                sortDirection: 'none',
               },
             ],
       ),
@@ -76,22 +79,18 @@ const App = () => {
               {
                 Header: 'Name',
                 accessor: 'name',
-                sortDirection: 'none',
               },
               {
                 Header: 'Style',
                 accessor: 'style',
-                sortDirection: 'none',
               },
               {
                 Header: 'abv',
                 accessor: 'abv',
-                sortDirection: 'none',
               },
               {
                 Header: 'ibu',
                 accessor: 'ibu',
-                sortDirection: 'none',
               },
         ]
       )
@@ -101,7 +100,7 @@ const App = () => {
   useEffect(() => {
     var args = {'limit': pageSize, 'offset': pageIndex * pageSize};
     if (order) {
-      args['order'] = order;
+      args['order'] = `${ordered}.${order}`;
     }
 
     apis[activeTab].getMethod(args)
@@ -128,6 +127,8 @@ const App = () => {
         key={`table-${i}`}
         columns={api.columns}
         data={api.data}
+        order={order}
+        ordered={ordered}
         initialPageSize={pageSize}
         onChangePageIndex={setPageIndex}
         onChangePageSize={setPageSize}
