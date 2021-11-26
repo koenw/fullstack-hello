@@ -17,6 +17,8 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 SuperTable.propTypes = {
   columns:            PropTypes.array,
   data:               PropTypes.array,
+  order:              PropTypes.string,
+  ordered:            PropTypes.string,
   initialPageSize:    PropTypes.number,
   onChangePageIndex:  PropTypes.func,
   onChangePageSize:   PropTypes.func,

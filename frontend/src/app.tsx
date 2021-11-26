@@ -18,7 +18,7 @@ const App = () => {
   const [ pageIndex, setPageIndex ] = useState<number>(0);
   const [ pageSize, setPageSize ] = useState<number>(10);
   const [ order, setOrder] = useState(null); // asc, desc, none, null
-  const [ ordered, setOrdered ] = useState<number>(0); // column the sort applies to
+  const [ ordered, setOrdered ] = useState<string>(""); // column the sort applies to
   const [ activeTab, setActiveTab ] = useState<number>(0);
 
   const columnHeaderClick = (column: any) => {
