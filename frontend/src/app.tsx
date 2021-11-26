@@ -21,6 +21,12 @@ const App = () => {
   const [ ordered, setOrdered ] = useState<string>(""); // column the sort applies to
   const [ activeTab, setActiveTab ] = useState<number>(0);
 
+  const changeTab = (newTab: any) => {
+    setActiveTab(newTab);
+    setPageIndex(0);
+    setOrder(null);
+  }
+
   const columnHeaderClick = (column: any) => {
     if (ordered != column.id) {
       setOrdered(column.id);
@@ -118,7 +124,7 @@ const App = () => {
   return(
   <SuperTabs
     activeTab={activeTab}
-    onChangeTab={setActiveTab}
+    onChangeTab={changeTab}
     labels={apis.map((api) => api.name)}
     >
 
