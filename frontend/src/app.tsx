@@ -5,7 +5,7 @@ import SuperTabs from "./components/tabs.tsx";
 
 import { Box, Tab, TabPanel } from '@mui/material';
 
-const basePath = document.location.hostname == "localhost" ? "http://localhost:3000" : `https://api.${document.location.hostname}/`;
+const basePath = document.location.hostname == "localhost" ? "http://localhost:3000" : `https://api.${document.location.hostname}`;
 
 const configuration = new Configuration({basePath: basePath});
 
