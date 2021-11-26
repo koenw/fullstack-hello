@@ -21,9 +21,9 @@ docs at [http://localhost:8088](http://localhost:8088).
 ## Development
 
 Using [PostgREST](https://github.com/PostgREST/postgrest) as a backend comes
-with some perks. Besides the beautiful RESTful API that comes with it, the
+with some perks. Besides the beautiful RESTful API that comes with it the
 [OpenAPI](https://swagger.io/specification/) support leads to some even more
-important benefits like [automatically generated
+important benefits, like [automatically generated
 clients](https://openapi-generator.tech/) and [API
 documentation](https://api.hello-parity.koenw.dev/swagger/).
 
@@ -92,9 +92,9 @@ adapted to additional datasets:
 
 ### Possible next steps
 
-* Make UI aware of foreign key relations;
-* Generate remaining dataset-specific UI code, leaving only configuration to
-  determine the columns.
+* Make the UI aware of foreign key relations;
+* Generate remaining dataset-specific UI code, leaving literally only
+  configuration to specify the database tables and columns
 * Add search and/or filter functionality
 
 ## Deployment
