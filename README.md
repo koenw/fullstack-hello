@@ -97,6 +97,10 @@ adapted to additional datasets:
   configuration to specify the database tables and columns
 * Add search and/or filter functionality
 
+## PR workflow
+
+Testing github PR workflow.
+
 ## Deployment
 
 You'll need Docker🐋 and a PostgreSQL🐘 database. Pre-build Docker images are
