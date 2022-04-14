@@ -1,2 +1,2 @@
-cargo run -- --help;
+cargo;
 return "OK DAN! (still not sure though)";
