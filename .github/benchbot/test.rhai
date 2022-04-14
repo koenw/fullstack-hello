@@ -1,1 +1,1 @@
-return "hoi";
+return "OK DAN!";
