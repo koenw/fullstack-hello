@@ -10,8 +10,7 @@ if result.is_ok() {
   //comment += "Sucks to be you, this is what happened:";
   return "jeej"
 } else {
-  return `jammer:
-  ${result.output}`
+  return `jammer: ${result.output}`
   //comment += "This is your lucky day 🍀"
 }
 
