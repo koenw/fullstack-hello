@@ -1,4 +1,4 @@
-let output_file = ./runtime/weights.rs;
+let output_file = "./runtime/weights.rs";
 
 let result = cargo run -- --help `--output=${output_file}`;
 
