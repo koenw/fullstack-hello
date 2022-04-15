@@ -1,2 +1,0 @@
-cargo hoi;
-return "hoi";
