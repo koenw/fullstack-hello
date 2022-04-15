@@ -1,6 +1,6 @@
 let output_file = "./runtime/weights.rs";
 
-let result = cargo run -- --help `--output=${output_file}`;
+let result = cargo run "--" --help `--output=${output_file}`;
 
 let comment = "";
 if result.is_ok() {
