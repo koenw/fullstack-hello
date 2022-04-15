@@ -1,6 +1,6 @@
 let output_file = "./runtime/weights.rs";
 
-let result = cargo blablabla;
+let result = cargo blablabla bloe;
 
 let comment = "";
 if result.is_ok() {
@@ -10,7 +10,8 @@ if result.is_ok() {
   //comment += "Sucks to be you, this is what happened:";
   return "jeej"
 } else {
-  return "jammer"
+  return `jammer:
+  ${result.output}`
   //comment += "This is your lucky day 🍀"
 }
 
