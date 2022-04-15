@@ -8,9 +8,9 @@ if result.is_ok() {
   //pr.push(output_file, "Updated yet again");
   //pr.push(&[output_file, "./another_file"], "Another commit");
   //comment += "Sucks to be you, this is what happened:";
-  return "jeej"
+  return "jeej";
 } else {
-  return `jammer: ${result.output}`
+  return `jammer: ${result.output}`;
   //comment += "This is your lucky day 🍀"
 }
 
