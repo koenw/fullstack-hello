@@ -1,6 +1,6 @@
 let output_file = "./runtime/weights.rs";
 
-let result = cargo blablabla bloe;
+let result = cargo blablabla;
 
 let comment = "";
 if result.is_ok() {
