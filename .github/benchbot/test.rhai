@@ -15,12 +15,4 @@ if result.is_ok() {
   //comment += "This is your lucky day 🍀"
 }
 
-/*
-comment += `Output for ${result.cmd}
-
-${output}`
-
-pr.comment(comment);
-*/
-
 return "gaat goed!";
