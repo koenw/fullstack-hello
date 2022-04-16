@@ -8,12 +8,11 @@ if result.is_ok() {
   //pr.push(output_file, "Updated yet again");
   //pr.push(&[output_file, "./another_file"], "Another commit");
   //comment += "Sucks to be you, this is what happened:";
-  return "jeej";
+  let res = "jeej: ";
+  res += result.stdout;
+  return res;
 } else {
-  let bla = "jammer: ";
-  bla += result.stderr;
+  let res = "jammer: ";
+  res += result.stderr;
   return bla;
-  //comment += "This is your lucky day 🍀"
 }
-
-return "gaat goed!";
