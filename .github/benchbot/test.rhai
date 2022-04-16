@@ -14,5 +14,5 @@ if result.is_ok() {
 } else {
   let res = "jammer: ";
   res += result.stderr;
-  return bla;
+  return res;
 }
