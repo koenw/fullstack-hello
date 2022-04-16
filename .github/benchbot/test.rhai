@@ -10,6 +10,7 @@ if result.is_ok() {
   //comment += "Sucks to be you, this is what happened:";
   let res = "jeej: ";
   res += result.stdout;
+  issue.create_comment(res);
   return res;
 } else {
   let res = "jammer: ";
