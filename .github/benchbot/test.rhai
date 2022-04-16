@@ -11,7 +11,7 @@ if result.is_ok() {
   return "jeej";
 } else {
   let bla = "jammer: ";
-  bla += result.output;
+  bla += result.stderr;
   return bla;
   //comment += "This is your lucky day 🍀"
 }
